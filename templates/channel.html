@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Channel</title>
+        <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+        <script src="{{ url_for('static', filename='channel.js') }}"></script>
+    </head>
+    <body>
+        <nav><a href=" {{url_for('index')}}" id="index">Change Name</a> | 
+        <a href=" {{url_for('homepage')}}" id="homepage">Channels</a></nav>
+        <!-- <nav>
+            <form action="{{ url_for('homepage') }}" method='post'>
+                <button type="submit" id="channels">Channels</button>
+            </form>
+            |
+            <form action="{{ url_for('index') }}" method='post'>
+                <button type="submit" id="change_user">Change Display Name</button>
+            </form>
+        </nav> -->
+        {% if empty %}
+            <p>No messages yet!</p>
+        {% endif %}
+        <ul id="messages">
+            {% for content in contents %}
+                <p>{{content[0]}} at {{content[1]}}</p>
+                <li>{{content[2]}}</li>
+            {% endfor %}
+        </ul>
+
+        <p>Write your own message!</p>
+        
+        <input type="text" id="message">
+        <input type="submit" id="submit">
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Homepage</title>
+        <script src="{{ url_for('static', filename='homepage.js') }}"></script>
+    </head>
+    <body>
+        <p id="name">Welcome </p>
+        <p>Choose a channel:</p>
+        <p>{{new_message}}</p>
+        <form action="{{ url_for('channel') }}" method="post">
+            <select name="channel">
+                {% for channel in channels %}
+                    <option data-channel="{{channel}}" value="{{channel}}"> {{channel}} </option>
+                {% endfor %}
+            </select>
+
+            <button type="submit" name="" id="">Submit</button>
+        </form>
+
+        <p>Or, create your own channel!</p>
+        <form action="{{ url_for('new_channel') }}" method="post">
+            <input type="text" name="new_channel">
+            <input type="submit" name="" id="">
+        </form>
+    </body>
+</html>
